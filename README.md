@@ -22,7 +22,7 @@ System 타임을 불러오도록 되어있었는데, 이 값을 정적인 값으
 ![수정 후](arts/step1_after_repair_run_task.png)
 
 <details>
-<summary> ð 학습한 내용 </summary>
+<summary> > 학습한 내용 </summary>
 
 ### Gradle Build output
 Gradle 이 작업을 실행할 때 콘솔 UI 와 Tooling API를 통해 다른 결과로 작업에 레이블을 저장할 수 있다.
@@ -58,3 +58,35 @@ Task는 해당 Action을 실행할 필요가 없다.
 
 </details>
 
+## Step2 : Unnecessary, gradle options
+
+1) `multiDexEnabled true`
+
+min 21에서 불필요한 옵션이다. <br>
+[공식문서](https://developer.android.com/studio/build/multidex#mdex-on-l)에 따르면
+Android 5.0 이상에서는 **멀티 덱스** 를 지원한다고 명시되어 있다.
+따라서 삭제를 해준다.
+
+2) `vectorDrawables.useSupportLibrary = true`
+
+위와 마찬가지로 min 21에서 불필요한 옵션이다. <br>
+[공식문서](https://developer.android.com/studio/write/vector-asset-studio?hl=ko#sloption)에 따르면
+Android 5.0 (API 버전 21) 아래에서 Vector 이미지를 사용할 수 있게 해주는 지원 라이브러리이다.
+따라서 삭제를 해준다.
+
+3) `dataBinding true`
+
+해당 앱에서는 `viewBinding`을 사용하고 `dataBinding`은 사용하지 않는다.
+필요하지 않은 옵션은 삭제해주었다. 
+
+4) `coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'`
+
+dusugar는 필요한 경우에만 추가한다.
+하지만 해당 앱에서는 필요한 부분이 없기 때문에 삭제 해주었다!
+
+[공식문서 참고](https://developer.android.com/studio/write/java8-support) <br>
+[Android 호환성 유지에 대한 고찰 ~ 언어편 _pluu](https://developer.android.com/studio/write/java8-support)
+
+5) Optimize 빌드 옵션 추가하기
+
+![Optimize 빌드 옵션 추가하기](arts/step2_obtimize_build_option.png)
