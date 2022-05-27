@@ -90,3 +90,9 @@ dusugar는 필요한 경우에만 추가한다.
 5) Optimize 빌드 옵션 추가하기
 
 ![Optimize 빌드 옵션 추가하기](arts/step2_obtimize_build_option.png)
+
+## Step3 : move network
+
+기존에는 네트워크 통신부가 `activity`에 위치해 있었다.
+이를 `viewModel`로 옮겨준다.
+
