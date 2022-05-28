@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.pluu.sample.codeforreadability.databinding.ActivityMainBinding
+import com.pluu.sample.codeforreadability.provider.SampleItemGeneratorImpl
 import com.pluu.sample.codeforreadability.utils.dp
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,9 @@ class MainActivity : AppCompatActivity() {
         getSharedPreferences("sample", Context.MODE_PRIVATE)
     }
 
-    private val viewModel by lazy { SearchViewModel() }
+    private val viewModel by lazy {
+        SearchViewModel(SampleItemGeneratorImpl())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

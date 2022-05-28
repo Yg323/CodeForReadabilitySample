@@ -118,3 +118,17 @@ Unit Test로 ViewModel을 테스트 해본다!
 ![img.png](arts/step5_test_result.png)
 
 이를 해결하는 것을 다음 step에서 해보자!
+
+## Step6 : test viewmodel
+
+Step 5에서 오류가 난 부분을 수정해보자!
+Color가 mock 되어있지 않다?
+
+그래서 Color를 넣어주는 부분을 빼주었다!
+그리고 mock Sample Item을 생성해주고~ 테스트코드에서 ViewModel을 생성할 때 넣어주고 테스트를 돌리는 것!!
+(근데 테스트에 대해 자세한 부분은 `mokito`를 공부해야 될 것같다!!)
+
+그리고 나머지 코드는 [공식문서의 Inject TestDispatchers in tests](https://developer.android.com/kotlin/coroutines/coroutines-best-practices#test-coroutine-dispatcher)
+를 참고해서..!
+
+![테스트 성공 캡쳐!](arts/step6_test_result_success.png)
