@@ -103,3 +103,18 @@ dusugar는 필요한 경우에만 추가한다.
 
 데이터에 대한 처리는 모두 뷰모델에서 담당해준다.
 어댑터에서도 sorting 등에 대해 신경쓰지 않고 데이터를 교체해주는 작업만 하면 된다!
+
+## Step5 : test viewmodel pre
+
+Unit Test로 ViewModel을 테스트 해본다!
+테스트 코드를 작성하면서 테스트 하기 어려운 코드를 짠 것은 아닌지 검토해볼 수도 있다.
+
+라이브 데이터 테스트를 위해 
+[공식문서 : Arch Core](https://developer.android.com/jetpack/androidx/releases/arch-core)와
+[Medium : Unit-testing LiveData and other ...](https://medium.com/androiddevelopers/unit-testing-livedata-and-other-common-observability-problems-bb477262eb04)
+를 참고하였다!
+
+테스트 실행 결과는 아래와 같다!
+![img.png](arts/step5_test_result.png)
+
+이를 해결하는 것을 다음 step에서 해보자!
