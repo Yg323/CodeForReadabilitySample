@@ -140,3 +140,10 @@ Color가 mock 되어있지 않다?
 로컬에 저장한다는 것을 뷰가 꼭 알아야 하는 정보가 아니다. 오히려 모르는 편이 좋다.
 
 또한, context를 사용해야하는데 이때 context를 넘기지 않고 `repository`를 넘겨준다!
+
+## Step8 : add item ui state
+
+`onFavorite`를 data class에 넣어 사용하고 User event를 처리할 때 신경 써줘야 할 부분을 더 잘?? 처리할 수 있었다. 
+[공식문서](https://developer.android.com/topic/architecture/ui-layer/events#recyclerview-events)에 따르면
+이렇게 했을 경우 `recyclerview` 어댑터가 필요한 데이터만 사용할 수 있었다!
+어댑터가 전체 ViewModel에 액세스할 수 없으므로 ViewModel에 의해 노출된 기능을 악용할 가능성이 낮다.

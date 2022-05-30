@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pluu.sample.codeforreadability.data.SavingRepositoryImpl
 import com.pluu.sample.codeforreadability.databinding.ActivityMainBinding
-import com.pluu.sample.codeforreadability.provider.SampleItemGeneratorImpl
+import com.pluu.sample.codeforreadability.provider.GenerateItemGeneratorImpl
 import com.pluu.sample.codeforreadability.utils.dp
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel by lazy {
         SearchViewModel(
-            generator = SampleItemGeneratorImpl(),
+            generator = GenerateItemGeneratorImpl(),
             savingRepository = SavingRepositoryImpl(this)
         )
     }
@@ -31,9 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpViews() {
-        sampleAdapter = SampleAdapter(
-            onFavorite = viewModel::updateFavorite
-        )
+        sampleAdapter = SampleAdapter()
 
         binding.btnGenerate.setOnClickListener {
             viewModel.generate()

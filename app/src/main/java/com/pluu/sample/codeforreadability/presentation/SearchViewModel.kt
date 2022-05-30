@@ -5,14 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pluu.sample.codeforreadability.data.SavingRepository
+import com.pluu.sample.codeforreadability.model.GenerateItem
 import com.pluu.sample.codeforreadability.model.SampleItem
-import com.pluu.sample.codeforreadability.provider.SampleItemGenerator
+import com.pluu.sample.codeforreadability.provider.GenerateItemGenerator
 import com.pluu.sample.codeforreadability.provider.provideRepository
 import kotlinx.coroutines.launch
 import logcat.logcat
 
 class SearchViewModel(
-    private val generator: SampleItemGenerator,
+    private val generator: GenerateItemGenerator,
     private val savingRepository: SavingRepository
 ) : ViewModel() {
 
@@ -32,7 +33,14 @@ class SearchViewModel(
         val item = generator.generate()
 
         if (cachedList.none { it.text == item.text }) {
-            cachedList.add(item)
+            val favoriteText = savingRepository.getFavorite()
+
+            cachedList.add(
+                item.toUiModel(
+                    isFavorite = item.text == favoriteText,
+                    onFavorite = ::updateFavorite
+                )
+            )
             _items.value = cachedList.sortedBy { it.text }
         } else {
             _messageEvent.value = "Duplicate item : ${item.text}"
@@ -60,7 +68,7 @@ class SearchViewModel(
         }
     }
 
-    fun updateFavorite(text: String) {
+    private fun updateFavorite(text: String) {
         savingRepository.saveFavorite(text)
         val snapshot = cachedList.map {
             it.copy(isFavorite = it.text == text)
@@ -70,3 +78,13 @@ class SearchViewModel(
         _items.value = cachedList.sortedBy { it.text }
     }
 }
+
+private fun GenerateItem.toUiModel(
+    isFavorite: Boolean,
+    onFavorite: (String) -> Unit
+): SampleItem = SampleItem(
+    text = text,
+    bgColor = bgColor,
+    isFavorite = isFavorite,
+    onFavorite = onFavorite
+)
