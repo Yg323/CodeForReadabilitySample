@@ -1,11 +1,9 @@
 package com.pluu.sample.codeforreadability.presentation
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.edit
+import com.pluu.sample.codeforreadability.data.SavingRepositoryImpl
 import com.pluu.sample.codeforreadability.databinding.ActivityMainBinding
 import com.pluu.sample.codeforreadability.provider.SampleItemGeneratorImpl
 import com.pluu.sample.codeforreadability.utils.dp
@@ -16,12 +14,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val preferences: SharedPreferences by lazy {
-        getSharedPreferences("sample", Context.MODE_PRIVATE)
-    }
-
     private val viewModel by lazy {
-        SearchViewModel(SampleItemGeneratorImpl())
+        SearchViewModel(
+            generator = SampleItemGeneratorImpl(),
+            savingRepository = SavingRepositoryImpl(this)
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,13 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         sampleAdapter = SampleAdapter(
-            onFavorite = {
-                preferences.edit {
-                    putString("KEY", it)
-                }
-                sampleAdapter.updateFavorite(it)
-                sampleAdapter.notifyDataSetChanged()
-            }
+            onFavorite = viewModel::updateFavorite
         )
 
         binding.btnGenerate.setOnClickListener {
@@ -54,8 +45,6 @@ class MainActivity : AppCompatActivity() {
             adapter = sampleAdapter
             addItemDecoration(SampleItemDecoration(4.dp))
         }
-
-        sampleAdapter.updateFavorite(preferences.getString("KEY", null).orEmpty())
     }
 
     private fun setUpObservers() {

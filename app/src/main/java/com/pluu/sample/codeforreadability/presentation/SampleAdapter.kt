@@ -17,7 +17,7 @@ class SampleAdapter(
     }
 
     override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
-        holder.onBind(list[position], favoriteText.orEmpty())
+        holder.onBind(list[position])
     }
 
     override fun getItemCount(): Int = list.size
@@ -26,10 +26,6 @@ class SampleAdapter(
         this.list.clear()
         this.list.addAll(list)
         notifyDataSetChanged()
-    }
-
-    fun updateFavorite(text: String) {
-        this.favoriteText = text
     }
 
 }

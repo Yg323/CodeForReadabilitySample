@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pluu.sample.codeforreadability.data.SavingRepository
 import com.pluu.sample.codeforreadability.model.SampleItem
 import com.pluu.sample.codeforreadability.provider.SampleItemGenerator
 import com.pluu.sample.codeforreadability.provider.provideRepository
@@ -11,7 +12,8 @@ import kotlinx.coroutines.launch
 import logcat.logcat
 
 class SearchViewModel(
-    private val generator: SampleItemGenerator
+    private val generator: SampleItemGenerator,
+    private val savingRepository: SavingRepository
 ) : ViewModel() {
 
     private val logRepository by lazy {
@@ -56,5 +58,15 @@ class SearchViewModel(
 //                    logcat { result.toString() }
 //                }
         }
+    }
+
+    fun updateFavorite(text: String) {
+        savingRepository.saveFavorite(text)
+        val snapshot = cachedList.map {
+            it.copy(isFavorite = it.text == text)
+        }
+        cachedList.clear()
+        cachedList.addAll(snapshot)
+        _items.value = cachedList.sortedBy { it.text }
     }
 }

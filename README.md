@@ -132,3 +132,11 @@ Color가 mock 되어있지 않다?
 를 참고해서..!
 
 ![테스트 성공 캡쳐!](arts/step6_test_result_success.png)
+
+## Step7 : move favorite
+
+`MainActivity`에서 preference를 저장한다.
+이는 뷰의 관심사와는 다소 거리가 멀다.
+로컬에 저장한다는 것을 뷰가 꼭 알아야 하는 정보가 아니다. 오히려 모르는 편이 좋다.
+
+또한, context를 사용해야하는데 이때 context를 넘기지 않고 `repository`를 넘겨준다!
