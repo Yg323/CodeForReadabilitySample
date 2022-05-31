@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pluu.sample.codeforreadability.data.ItemRepository
+import com.pluu.sample.codeforreadability.data.SampleRepository
 import com.pluu.sample.codeforreadability.data.SavingRepository
 import com.pluu.sample.codeforreadability.model.GenerateItem
 import com.pluu.sample.codeforreadability.model.SampleItem
@@ -14,12 +15,10 @@ import logcat.logcat
 
 class SearchViewModel(
     private val itemRepository: ItemRepository,
-    private val savingRepository: SavingRepository
+    private val savingRepository: SavingRepository,
+    private val logRepository: SampleRepository
 ) : ViewModel() {
 
-    private val logRepository by lazy {
-        provideRepository()
-    }
 
     private val _items = MutableLiveData<List<SampleItem>>()
     val items: LiveData<List<SampleItem>> get() = _items

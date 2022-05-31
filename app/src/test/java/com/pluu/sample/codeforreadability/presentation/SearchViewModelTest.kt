@@ -1,8 +1,7 @@
 package com.pluu.sample.codeforreadability.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.pluu.sample.codeforreadability.model.GenerateItem
-import com.pluu.sample.codeforreadability.provider.GenerateItemGenerator
+import com.pluu.sample.codeforreadability.data.ItemRepository
 import com.pluu.sample.codeforreadability.utils.getOrAwaitValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,7 +14,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -28,19 +26,18 @@ internal class SearchViewModelTest {
     private lateinit var viewModel: SearchViewModel
 
     @Mock
-    private lateinit var generateItemGenerator: GenerateItemGenerator
+    private val itemRepository: ItemRepository = mock()
 
     private val dispatcher = StandardTestDispatcher()
 
     @Before
     fun setup() {
         Dispatchers.setMain(dispatcher)
-        generateItemGenerator = mock {
-            on { generate() } doReturn GenerateItem("", 0)
-        }
+
         viewModel = SearchViewModel(
-            generator = generateItemGenerator,
-            savingRepository = mock()
+            itemRepository = itemRepository,
+            savingRepository = mock(),
+            logRepository = mock()
         )
     }
 

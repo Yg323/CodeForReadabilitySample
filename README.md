@@ -158,3 +158,12 @@ Color가 mock 되어있지 않다?
 `repository`를 이용하여 해결해보자!
 
 나중에 데이터 저장을 서버로 이관하거나, room을 사용하더라도 일관되게 처리할 수 있을 것이다!
+
+## Step10 : add, ViewModelProvider Factory
+
+ViewModelProvider Factory를 사용해서 개선해보자!
+생성자로 다 만들었지만 generate 된게 많다..!
+DI랑 Hilt를 쓰면 코드를 보기 좋다.. 
+
+생성자에 repository를 너무 많이 넣는듯 한..!
+이는 Hilt를 공부하면 적용해보는걸로 하자!
