@@ -147,3 +147,14 @@ Color가 mock 되어있지 않다?
 [공식문서](https://developer.android.com/topic/architecture/ui-layer/events#recyclerview-events)에 따르면
 이렇게 했을 경우 `recyclerview` 어댑터가 필요한 데이터만 사용할 수 있었다!
 어댑터가 전체 ViewModel에 액세스할 수 없으므로 ViewModel에 의해 노출된 기능을 악용할 가능성이 낮다.
+
+
+## Step9 : item manager for repository
+
+뷰 모델에서 데이터를 보관? 캐싱하는게 맞는가..? 
+데이터 보관을 ViewModel 대신에 다른 곳에 맡긴다면..!
+추후, 데이터 저장을 서버로 이관한다면??
+
+`repository`를 이용하여 해결해보자!
+
+나중에 데이터 저장을 서버로 이관하거나, room을 사용하더라도 일관되게 처리할 수 있을 것이다!
