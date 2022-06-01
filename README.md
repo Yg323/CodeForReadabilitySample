@@ -167,3 +167,11 @@ DI랑 Hilt를 쓰면 코드를 보기 좋다..
 
 생성자에 repository를 너무 많이 넣는듯 한..!
 이는 Hilt를 공부하면 적용해보는걸로 하자!
+
+## Step11 : add random generator
+
+색상 값은 실제로 ARGB or RGB이다. 
+하지만, 우리는 Int를 썼고! Int의 범위는 `Int.MIN_VALUE` ~ `Int.MAX_VALUE`이다!
+이걸 inline 함수를 사용해서 리팩토링해보자!
+
+깔끔해진 모습이 보기 좋아졌다!
