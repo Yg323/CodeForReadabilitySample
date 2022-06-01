@@ -175,3 +175,12 @@ DI랑 Hilt를 쓰면 코드를 보기 좋다..
 이걸 inline 함수를 사용해서 리팩토링해보자!
 
 깔끔해진 모습이 보기 좋아졌다!
+
+## Step12 : use value class
+
+value 클래스는 객체를 생성하는 비용을 줄여준다.
+[공식문서](https://kotlinlang.org/docs/inline-classes.html#inline-classes-vs-type-aliases)와
+[Velog에 정리된 글](https://velog.io/@dhwlddjgmanf/Kotlin-1.5에-추가된-value-class에-대해-알아보자)을
+참고해보자!
+
+Step 11에서 적은거 처럼 Int 대신 ColorValue를 쓰니까 확실히 얘는 색을 나타내는구나~~ 를 알 수 있다!
