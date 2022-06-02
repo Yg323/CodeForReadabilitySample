@@ -184,3 +184,16 @@ value 클래스는 객체를 생성하는 비용을 줄여준다.
 참고해보자!
 
 Step 11에서 적은거 처럼 Int 대신 ColorValue를 쓰니까 확실히 얘는 색을 나타내는구나~~ 를 알 수 있다!
+
+## Step13 : migration wrapper data
+
+cachedList를 확인할 때 Loop를 돌면서 일일이 체크를 한다!
+`cachedlist.none { it.text == item.text }` 이렇게!
+최악의 시나리오는 마지막 Element 까지 체크하는 것일거다.
+
+시간 복잡도가 맞는지 확인해보자..
+
+`Tree set`을 이용하면 O(log n)으로 줄일 수 있다!
+
+그리고 Item Repository를 테스트 하는 테스트 코드도 함께 작성한다!
+기본 길이를 체크하고, generate 후 길이를 체크하고! reset 후 길이를 체크하는 코드를 작성한다..!
